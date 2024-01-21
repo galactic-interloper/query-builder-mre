@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder {
              * instance in this case.
             */
             $user->roles()->sync([$role->id->value]);
+
+            $role->permissions()->create([]);
         }
     }
 }

@@ -6,6 +6,7 @@ use App\Enums\Roles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Role extends Model {
     use HasFactory;
@@ -35,5 +36,12 @@ class Role extends Model {
         return $this->belongsToMany(User::class)
             ->using(RoleUser::class)
             ->withPivot(RoleUser::PIVOT_FIELDS);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function permissions(): HasMany {
+        return $this->hasMany(Permission::class);
     }
 }

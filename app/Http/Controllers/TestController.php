@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,5 +24,12 @@ class TestController extends Controller {
         $roles = Role::with('users')->get();
 
         return compact('users', 'roles');
+    }
+
+
+    public function issueB(Request $request) {
+        $permissions = Permission::with('role')->get();
+
+        return $permissions;
     }
 }
